@@ -2,23 +2,24 @@ const express = require('express');
 const router = express.Router();
 const {ListSports} = require('./model');
 
-router.get('/list-sports', (req, res) => {
+router.get('/list-sports', (req, res, next) => {
 
-	let infoOfAllSports = ListSports.get();
-
-	if ( infoOfAllSports ){
+	ListSports.get()
+	.then( sports => {
 		res.status(200).json({
-			message : "Successfully sent the list of sports",
+			message : 'Successfully sending the list of sports',
 			status : 200,
-			sports : infoOfAllSports
+			sports : sports
 		});
-	}
-	else{
+	}).catch( err => {
 		res.status(500).json({
 			message : `Internal server error.`,
 			status : 500
-		}).send("Finish");
-	}
+		});
+		return next();
+
+	});
+
 });
 
 module.exports = router;
