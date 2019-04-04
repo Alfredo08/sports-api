@@ -19,9 +19,46 @@ router.get('/list-sports', (req, res, next) => {
 		return next();
 
 	});
-
 });
 
+
+router.post('/post-sport', (req, res, next) => {
+	
+	let requiredFields = ['id', 'name'];
+
+	for ( let i = 0; i < requiredFields.length; i ++){
+		let currentField = requiredFields[i];
+
+		if (! (currentField in req.body)){
+			res.status(406).json({
+				message : `Missing field ${currentField} in body.`,
+				status : 406
+			});
+			return next();
+		}
+	}
+
+	let objectToAdd = {
+		id: req.body.id,
+		name: req.body.name
+	};
+
+	ListSports.post(objectToAdd)
+		.then(sport => {
+			res.status(201).json({
+				message : "Successfully added the sport",
+				status : 201,
+				sport : sport
+			});
+		})
+		.catch( err => {
+			res.status(500).json({
+				message : `Internal server error.`,
+				status : 500
+			});
+			return next();
+		});
+});
 module.exports = router;
 
 

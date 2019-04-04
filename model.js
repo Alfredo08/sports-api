@@ -18,7 +18,16 @@ const ListSports = {
 			.catch(err => {
 				 throw new Error(err);
 			});
-	} 
+	} ,
+	post : function(newSport){
+		return Sports.create(newSport)
+			.then(sport => {
+				return sport;
+			})
+			.catch(err => {
+				 throw new Error(err);
+			});
+	}
 }
 
 module.exports = {ListSports};
