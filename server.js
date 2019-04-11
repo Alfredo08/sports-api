@@ -6,6 +6,8 @@ const app = express();
 mongoose.Promise  = global.Promise;
 const jsonParser = bodyParser.json();
 
+app.use(express.static('public'));
+
 app.use('/sports/api', jsonParser, sportsRouter);
 
 let server;

@@ -27,6 +27,30 @@ const ListSports = {
 			.catch(err => {
 				 throw new Error(err);
 			});
+	},
+	getById : function(sportId){
+		return Sports.findOne({id : sportId})
+			.then(sport => {
+				if (sport){
+					return sport;
+				}
+				throw new Err("Sport not found");
+			})
+			.catch(err =>{
+				throw new Error(err);
+			});
+	},
+	put : function(sportId, newData){
+		return Sports.findOneAndUpdate({id : sportId}, { $set: newData }, { new: true })
+			.then(sport => {
+				if (sport){
+					return sport;
+				}
+				throw new Err("Sport not found");
+			})
+			.catch(err =>{
+				throw new Error(err);
+			});
 	}
 }
 

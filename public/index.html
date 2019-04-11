@@ -7,12 +7,34 @@
     <link href="./index.css" type="text/css" rel="stylesheet">
   </head>
   <body>
-    <h1> Hello this page is loaded from the public directory </h1>
-    <a href="./profile.html"> Profile </a>
+
+    <form class="retrieveSports">
+      <button type="submit" class="getSports">
+        Click me to retrieve the list of sports
+      </button>
+    </form>
+
+    <br>
+
+    <form class="createSport">
+      <label for="sportName"> Name: </label>
+      <input id="sportName" type="text">
+      <label for="sportId"> ID: </label>
+      <input id="sportId" type="number">
+    
+      <button type="submit" class="postSport">
+        Send
+      </button>
+    </form>
+
+    <ul id="listOfSports">
+
+    </ul>
 
     <script
 	  src="https://code.jquery.com/jquery-3.3.1.js"
 	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	  crossorigin="anonymous"></script>
+    <script src="index.js"></script>
   </body>
 </html>
