@@ -51,6 +51,18 @@ const ListSports = {
 			.catch(err =>{
 				throw new Error(err);
 			});
+	},
+	delete : function(sportId){
+		return Sports.findOneAndRemove({id : sportId})
+			.then(sport => {
+				if (sport){
+					return sport;
+				}
+				throw new Err("Sport not found");
+			})
+			.catch(err => {
+				throw new Error(err);
+			})
 	}
 }
 
