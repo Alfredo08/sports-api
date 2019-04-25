@@ -44,6 +44,7 @@ router.post('/post-sport', (req, res, next) => {
 		name: req.body.name
 	};
 
+	console.log(objectToAdd);
 	ListSports.post(objectToAdd)
 		.then(sport => {
 			res.status(201).json({
@@ -53,9 +54,9 @@ router.post('/post-sport', (req, res, next) => {
 			});
 		})
 		.catch( err => {
-			res.status(500).json({
-				message : `Internal server error.`,
-				status : 500
+			res.status(400).json({
+				message : `${err}`,
+				status : 400
 			});
 			return next();
 		});

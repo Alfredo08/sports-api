@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const sportsRouter = require('./router');
 const app = express();
 mongoose.Promise  = global.Promise;
+
+const {DATABASE_URL, PORT} = require('./config');
+
 const jsonParser = bodyParser.json();
 
 app.use(express.static('public'));
@@ -51,7 +54,7 @@ function closeServer(){
 		});
 }
 
-runServer(8080, 'mongodb://localhost/sports')
+runServer(PORT, DATABASE_URL )
 	.catch(err => console.log(err));
 
 module.exports = { app, runServer, closeServer };
